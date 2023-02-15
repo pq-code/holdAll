@@ -8,6 +8,7 @@ export default {
     components: {},
 };
 </script>
+
 <style>
 #app {
     width: 100vw;

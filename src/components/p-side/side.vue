@@ -199,8 +199,6 @@ onMounted(() => {});
 }
 
 .p-side-float {
-  opacity: 1;
-  // transition: opacity 0.15s ease 0s;
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -208,8 +206,11 @@ onMounted(() => {});
   background: rgba(109, 109, 109, 0.775);
 
   .side-ul {
+    transform: translate( 100, 0 ,0);
+    transition: opacity 0.15s ease 0s;
+
     z-index: 999;
-    position: absolute;
+    position:relative;
     left: 0;
     display: flex;
     flex-direction: column;

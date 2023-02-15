@@ -7,6 +7,7 @@ import webgl from "./branch/webgl";
 // import pmaoUIhome from "./branch/pmao-ui";
 import game from "./branch/game";
 import map from "./branch/map";
+import firstScreenFn from "./firstScreenFn"
 
 const routes = [
   {
@@ -34,7 +35,21 @@ const routes = [
       // ...three,
     ],
     meta: { hidden: false, title: "首页" },
-  },
+    },
+   {
+        path: "/firstScreen/home",
+        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/frontPage.vue"),
+        name: "firstScreen",
+        // leaf: true,//只有一个节点
+        meta: { hidden: false, title: "firstScreen" },
+    },
+    {
+        path: "/firstScreen/square",
+        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/frontPage.vue"),
+        name: "firstScreen",
+        // leaf: true,//只有一个节点
+        meta: { hidden: false, title: "firstScreen" },
+    },
 
   //   ...pmaoUIhome,
 ];
@@ -44,4 +59,8 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+    // 随机首页
+    firstScreenFn(to, from, next)
+});
 export default router;

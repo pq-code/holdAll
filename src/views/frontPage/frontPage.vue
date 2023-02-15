@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import threeHome from "../frontPage/threeHome/index.vue";
+import threeHome from "./threeHome/index.vue";
 
 const router = useRouter();
 
@@ -24,6 +24,7 @@ const frontPage = function () {
         path: "/dashboard",
     });
 };
+
 </script>
 
 <style lang="less" scoped>
