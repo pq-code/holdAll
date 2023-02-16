@@ -14,7 +14,7 @@ const routes = [
     path: "/",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/frontPage/frontPage.vue"
+        /* webpackChunkName: "about" */ "../views/frontPage/threeHome/threeHome.vue"
       ),
     name: "frontPage",
     meta: { hidden: false, title: "首屏" },
@@ -38,15 +38,15 @@ const routes = [
     },
    {
         path: "/firstScreen/home",
-        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/frontPage.vue"),
-        name: "firstScreen",
+        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/threeHome/threeHome.vue"),
+        name: "firstScreen.home",
         // leaf: true,//只有一个节点
         meta: { hidden: false, title: "firstScreen" },
     },
     {
         path: "/firstScreen/square",
-        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/frontPage.vue"),
-        name: "firstScreen",
+        component: () => import(/* webpackChunkName: "about" */ "../views/frontPage/square/square.vue"),
+        name: "firstScreen.square",
         // leaf: true,//只有一个节点
         meta: { hidden: false, title: "firstScreen" },
     },

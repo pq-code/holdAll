@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import threeHome from "./threeHome/index.vue";
+import threeHome from "./three.vue";
 
 const router = useRouter();
 
@@ -32,10 +32,7 @@ const frontPage = function () {
     width: 100%;
     height: 100vh;
 
-    .bottom {
-        bottom: 0;
-        color: #000;
-    }
+
 
     .frontPageTile {
         background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
@@ -50,4 +47,11 @@ const frontPage = function () {
         cursor: pointer;
     }
 }
+.bottom {
+        position: absolute;
+        width: 100vw;
+        z-index: 10;
+        bottom: 0;
+        color: #000;
+    }
 </style>

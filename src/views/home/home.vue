@@ -9,10 +9,10 @@ import { navigation } from './navigation';
 let lengthWidth = ref(window.innerWidth > 1000 ? true : false);
 const fn = function (fnName: string) {
   if (screen) {
-    // if (screenfull.isEnabled) {
-    //     const element: any = document.getElementById('main');
-    //     screenfull.request(element);
-    // }
+    if (screenfull.isEnabled) {
+        const element: any = document.getElementById('main');
+        screenfull.request(element);
+    }
   }
 };
 

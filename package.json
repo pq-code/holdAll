@@ -1,12 +1,24 @@
 {
     "name": "holdall",
     "version": "0.0.1",
+    "packageManager": "pnpm@7.1.0",
+    "engines": {
+        "node": ">=16.11.0"
+    },
     "private": true,
     "repository": {
         "type": "git",
-        "url": "https://github.com/facebook/react.git",
+        "url": "https://github.com/pq-code/holdAll/tree/dev",
         "directory": "packages/react"
     },
+    "description": "一个功能合集",
+    "homepage": "https://pqartstation.cn/",
+    "author": "Pq",
+    "license": "MIT",
+    "files": [
+        "index.js",
+        "dist"
+    ],
     "scripts": {
         "dev": "vite",
         "build": "run-p type-check build-only",
