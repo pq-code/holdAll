@@ -1,17 +1,10 @@
 export const navigation = [
     {
-        title: 'lingo3D',
-        router: '/lingo3D',
+        title: '在线文档',
+        router: '/drawingBoard',
         icon: 'icon-wenjianjia',
         options: [
-            {
-                title: 'lingo3D',
-                router: '/lingo3D/home',
-            },
-            {
-                title: 'lingo3D',
-                router: '/lingo3D/lingo3D2',
-            },
+
         ],
     },
     {

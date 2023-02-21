@@ -38,6 +38,10 @@ let onWindowResize = () => {
   return (lengthWidth.value = window.innerWidth >= 1000);
 };
 
+const putAway = () => {
+    console.log('收起侧面板')
+}
+
 window.addEventListener('resize', onWindowResize);
 
 </script>
@@ -49,6 +53,10 @@ window.addEventListener('resize', onWindowResize);
           <div class="user-info"></div>
         </template>
       </Pside>
+      <div class="putAway" @click="putAway">
+        <i class="iconfont icon-arrow-left" style="font-size: 20px;"></i>
+        <div v-show="lengthWidth">收起侧边栏</div>
+      </div>
     </div>
     <div class="honeContainer-main">
       <div class="honeContainer-main-heard">
@@ -84,6 +92,8 @@ window.addEventListener('resize', onWindowResize);
   flex-direction: row;
 
   .honeContainer-side {
+    display: flex;
+    flex-direction: column;
     // width: 260px;
     background-color: #f5f6f7;
 
@@ -92,6 +102,15 @@ window.addEventListener('resize', onWindowResize);
       width: 46px;
       border-radius: 50%;
       background-color: #2ed7fd;
+    }
+    .putAway{
+        cursor: pointer;
+        display: flex;
+        width: 100%;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
     }
   }
 

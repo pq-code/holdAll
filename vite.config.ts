@@ -32,13 +32,13 @@ export default defineConfig(({ command }) => {
                 deleteOriginFile: command !== "serve", // 是否删除原始文件
             }),
         ],
-        build: {
-            chunkSizeWarningLimit: 1500,
-        },
         resolve: {
             alias: {
                 "@": fileURLToPath(new URL("./src", import.meta.url)),
             },
+        },
+        build: {
+            chunkSizeWarningLimit: 1500,
         },
         css: {
             // css预处理器

@@ -1,27 +1,35 @@
-import { createRouter, createWebHistory } from 'vue-router';
-
-import onlineDocuments from './branch/onlineDocuments';
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    component: () => import('@/pages/onlineDocuments/drafting.vue'),
-    name: 'home',
-    meta: { hidden: false, title: '首屏' },
+    path: "/",
+    component: () => import("@/views/home/home.vue"),
+    name: "home",
+    redirect: "/dashboard",
+    meta: { hidden: false, title: "首屏" },
   },
-   {
-        path: '/onlineDocuments',
-        component: () => import('@/pages/onlineDocuments/drafting.vue'),
-        name: 'onlineDocuments',
-        redirect: '/onlineDocuments/drafting',
-        children: [
-            {
-                path: '/onlineDocuments/drafting',
-                component: () => import('@/pages/onlineDocuments/drafting.vue'),
-            },
-        ],
-        meta: { hidden: false, title: 'map' },
-    },
+  {
+    path: "/dashboard",
+    component: () => import("@/views/home/home.vue"),
+    name: "dashboard",
+    redirect: "/onlineDocuments/drafting",
+    children: [
+      {
+        name: "onlineDocuments.drafting",
+        path: "/onlineDocuments/drafting",
+        component: () => import("@/pages/onlineDocuments/drafting.vue"),
+      },
+    ],
+    meta: { hidden: false, title: "onlineDocuments" },
+  },
+
+  {
+    path: "/onlineDocuments",
+    component: () => import("@/pages/onlineDocuments/drafting.vue"),
+    name: "onlineDocuments",
+    // leaf: true,//只有一个节点
+    meta: { hidden: false, title: "onlineDocuments" },
+  },
 ];
 
 const router = createRouter({

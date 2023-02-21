@@ -138,20 +138,6 @@ onMounted(() => { });
                                     :key="`${index}_button`"
                                     :lengthWidth="!lengthWidth"
                                     @dropDown="dropDown(index)"></pDropDownButtonVue>
-                <!-- <button class="button"
-                        @click="lengthWidthFn(item)"
-                        :style="{ 'justify-content': !lengthWidth ? 'flex-start' : 'center' }">
-                    <i :class="['iconfont', item.icon]"></i>
-                    <div v-if="!lengthWidth"
-                         style="margin-left: 10px">
-                        {{ item.title }}
-                    </div>
-                    <div class="button-dropDown"
-                         @click="lengthWidthFn(item)"
-                         v-if="item.options && item.options.length > 1 && !lengthWidth">
-                        <i class="iconfont icon-arrow-down"></i>
-                    </div>
-                </button> -->
             </div>
         </div>
     </div>
