@@ -28,7 +28,7 @@ const routes = [
     // leaf: true,//只有一个节点
     children: [
         //   ...webgpu,
-        //   ...webgl,
+          ...webgl,
       //   ...pmaoUI,
       //   ...game,
       ...map,

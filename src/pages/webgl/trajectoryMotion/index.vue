@@ -62,7 +62,6 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
         camera.updateProjectionMatrix ();
     };
 
-
     // 创建渲染器对象
     var renderer = new THREE.WebGLRenderer({
         antialias: true, // true/false表示是否开启反锯齿

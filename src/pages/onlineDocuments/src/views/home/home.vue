@@ -41,7 +41,8 @@ const lengthWidth = ref();
     display: flex;
     flex-direction: column;
     .honeContainer-main-center {
-      opacity: auto;
+      height: 100%;
+      display: flex;
     }
   }
 }

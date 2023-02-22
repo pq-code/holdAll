@@ -19,10 +19,21 @@ const routes = [
         path: "/onlineDocuments/drafting",
         component: () => import("@/pages/onlineDocuments/drafting.vue"),
       },
+      {
+        name: "onlineDocuments.drawingBoard",
+        path: "/onlineDocuments/drawingBoard",
+        component: () => import("@/pages/drawingBoard/drawingBoard.vue"),
+      },
     ],
     meta: { hidden: false, title: "onlineDocuments" },
   },
-
+  {
+    path: "/drawingBoard",
+    component: () => import("@/pages/drawingBoard/drawingBoard.vue"),
+    name: "drawingBoard",
+    // leaf: true,//只有一个节点
+    meta: { hidden: false, title: "drawingBoard" },
+  },
   {
     path: "/onlineDocuments",
     component: () => import("@/pages/onlineDocuments/drafting.vue"),
