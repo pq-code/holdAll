@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import pDropDownButtonVue from "@/components/p-dropDown/p-dropDownButton.vue";
+import { drawingBoardStore } from "../stores/drawingBoardStore";
+
+const store = drawingBoardStore();
 
 const rectangle = ref(false);
-const emits = defineEmits(["operate"]);
 
 const buttonRefList = {}; // 正常
 const oldSelect = ref(); // 选中的项
 
-const add = () => {
-  debugger;
-};
+const add = () => {};
 
 // 操作类型抛出
 const addRectangle = (e: string) => {
   rectangle.value = !rectangle.value;
-  emits("operate", e);
+  store.selectDraw = e;
 };
 
 const list = ref([

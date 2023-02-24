@@ -1,41 +1,40 @@
-import Konva from "konva";
-
 export const rectangle = {
-  addRect: () => {
-    const a = new Konva.Rect({
+  addRect: {
+    title: "矩形",
+    option: {
       x: 200,
-      y: 200,
-      width: 200,
+      y: 300,
+      width: 100,
       height: 100,
       fill: "#ffff",
-      stroke: "#ffff",
+      draggable: true,
+    },
+  },
+  addCircle: {
+    title: "圆形",
+    option: {
+      x: 300,
+      y: 300,
+      radius: 70,
+      fill: "#ffff",
+      stroke: "black",
       strokeWidth: 0,
       draggable: true,
-    });
-    a.on("mouseover", function () {
-      console.log("移入");
-    });
-    a.on("mouseout", function () {
-      console.log("移出");
-    });
-    return a;
-  },
-  addCircle: () => {
-    const a = new Konva.Circle({
-      x: 200,
-      y: 200,
-      radius: 70,
-      fill: "red",
-      stroke: "black",
-      strokeWidth: 4,
-      draggable: true,
-    });
-    a.on("mouseover", function () {
-      console.log("移入");
-    });
-    a.on("mouseout", function () {
-      console.log("移出");
-    });
-    return a;
+    },
+    addLine: {
+      title: "线条",
+      option: {
+        x: 20,
+        y: 200,
+        points: [0, 0, 100, 0, 100, 100],
+        tension: 0.5,
+        closed: true,
+        stroke: "black",
+        fillLinearGradientStartPoint: { x: -50, y: -50 },
+        fillLinearGradientEndPoint: { x: 50, y: 50 },
+        fillLinearGradientColorStops: [0, "red", 1, "yellow"],
+        draggable: true,
+      },
+    },
   },
 };

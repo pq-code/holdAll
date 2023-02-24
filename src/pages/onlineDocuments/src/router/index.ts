@@ -12,7 +12,7 @@ const routes = [
     path: "/dashboard",
     component: () => import("@/views/home/home.vue"),
     name: "dashboard",
-    redirect: "/onlineDocuments/drafting",
+    redirect: "/onlineDocuments/drawingBoard",
     children: [
       {
         name: "onlineDocuments.drafting",

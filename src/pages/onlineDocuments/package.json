@@ -20,6 +20,7 @@
         "rollup-plugin-visualizer": "^5.9.0",
         "vite-plugin-compression": "^0.5.1",
         "vue": "^3.2.45",
+        "vue-konva": "^3.0.2",
         "vue-router": "^4.1.6"
     },
     "devDependencies": {
