@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { drawingBoardStore } from "../stores/drawingBoardStore";
 
 const store = drawingBoardStore();
@@ -15,7 +15,7 @@ const store = drawingBoardStore();
       </div>
     </div>
     <div class="bottom-right">
-      <div class="percentage">{{ `${store.scale * 100} %` }}</div>
+      <div class="percentage">{{ `${store.scale} %` }}</div>
       <i
         style="width: 20px; cursor: pointer"
         class="iconfont icon-jiantouxiaxiao"

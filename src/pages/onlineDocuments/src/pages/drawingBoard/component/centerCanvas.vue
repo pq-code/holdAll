@@ -69,14 +69,15 @@ const wheelEvent = (event: any) => {
     x: (pointer.x - stage.x()) / oldScale,
     y: (pointer.y - stage.y()) / oldScale,
   };
-  const newScale = event.evt.deltaY < 0 ? oldScale + 0.12 : oldScale - 0.12;
+
+  const newScale = event.evt.deltaY < 0 ? oldScale + 0.1 : oldScale - 0.1;
   store.storeScale(newScale); // 缩放比例
   const newPos = {
     x: pointer.x - mousePointTo.x * newScale,
     y: pointer.y - mousePointTo.y * newScale,
   };
 
-  if (newScale >= 0.5 && newScale <= 10) {
+  if (newScale > 0.6 && newScale < 9.9) {
     scale.value = { x: newScale, y: newScale }; // 更新缩放比例
     event.target.scale(scale.value);
     event.target.position(newPos);
@@ -95,10 +96,10 @@ onMounted(() => {
 
 <template>
   <v-stage ref="stageRef" :config="configKonva">
-    <!-- <v-layer>
-      网格背景
+    <v-layer>
+      <!-- 网格背景 -->
       <backGrid :stageConfig="configKonva"></backGrid>
-    </v-layer> -->
+    </v-layer>
     <v-layer ref="layerRef">
       <!-- 添加图形 -->
       <v-group>

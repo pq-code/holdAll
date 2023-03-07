@@ -12,11 +12,15 @@ import VueKonva from "vue-konva";
 import "./assets/styles/main.css";
 import "./assets/iconfont/iconfont.css";
 
+import myDirective from "./instruct/clickoutside";
+
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
 app.use(VueKonva);
+
+app.directive("clickoutside", myDirective);
 
 app.mount("#app");

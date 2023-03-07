@@ -8,19 +8,25 @@ import { sideButton } from "../component/staticData/sideButton";
 const store = drawingBoardStore();
 
 const list = ref(sideButton);
-const rectangle = ref(false);
 
 const oldSideSelect = ref(); // 选中的项
 
 const add = (e: number) => {
-  oldSideSelect.value = e;
-  rectangle.value = !rectangle.value;
+  if (oldSideSelect.value == e) {
+    oldSideSelect.value = null;
+  } else {
+    oldSideSelect.value = e;
+  }
 };
 
 // 操作类型抛出
 const addRectangle = (e: string) => {
-  rectangle.value = !rectangle.value;
   store.selectDraw = e;
+  oldSideSelect.value = null;
+};
+
+const clickoutside = () => {
+  oldSideSelect.value = null;
 };
 </script>
 
@@ -37,7 +43,7 @@ const addRectangle = (e: string) => {
         :content="item.title"
         placement="left-start"
       >
-        <div class="tool-rectangle" @click="add(index)">
+        <div class="tool-rectangle" @click.stop="add(index)">
           <i :class="['iconfont', item.icon]"></i>
           <i
             style="
@@ -51,8 +57,9 @@ const addRectangle = (e: string) => {
         </div>
       </el-tooltip>
       <div
-        v-show="index == oldSideSelect && item.options?.length > 0"
+        v-if="index == oldSideSelect && item.options?.length > 0"
         class="openRectangle"
+        v-clickoutside="clickoutside"
       >
         <pDropDownButtonVue
           v-for="(e, index) in item.options"
