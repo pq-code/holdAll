@@ -9,6 +9,23 @@ const store = drawingBoardStore();
 const search = ref();
 const buttonRefList = {}; // 正常
 const oldSelect = ref(); // 选中的项
+const color = ref("rgba(225, 225, 225, 1)"); // 选中的颜色
+const predefineColors = ref([
+  "#ff4500",
+  "#ff8c00",
+  "#ffd700",
+  "#90ee90",
+  "#00ced1",
+  "#1e90ff",
+  "#c71585",
+  "rgba(255, 69, 0, 0.68)",
+  "rgb(255, 120, 0)",
+  "hsv(51, 100, 98)",
+  "hsva(120, 40, 94, 0.5)",
+  "hsl(181, 100%, 37%)",
+  "hsla(209, 100%, 56%, 0.73)",
+  "#c7158577",
+]);
 const aaa = ref(); // 当前修改的图形数据
 
 // 动态ref
@@ -63,14 +80,44 @@ const dropDown = (index: number) => {
         <div class="rightSide-heard-actionBars-input">
           <el-input v-model="input2" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto><i class="iconfont icon-jiazai5"></i></el-butto>
+              <el-butto
+                ><i
+                  class="iconfont icon-jiazai5"
+                  style="
+                    transform: translateY(-11px) translateX(-8px);
+                    position: absolute;
+                  "
+                ></i
+              ></el-butto>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
           <el-input v-model="input2" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto><i class="iconfont icon-jiazai5"></i></el-butto>
+              <el-butto
+                ><i
+                  class="iconfont icon-jiazai5"
+                  style="
+                    transform: translateY(-10px) translateX(-8px);
+                    position: absolute;
+                  "
+                ></i
+              ></el-butto>
+            </template>
+          </el-input>
+        </div>
+      </div>
+      <div class="rightSide-heard-padding">
+        <div class="rightSide-heard-padding-title">填充</div>
+        <div class="rightSide-heard-padding-main">
+          <el-input v-model="color" class="w-50 m-2" placeholder="">
+            <template #prepend>
+              <el-color-picker
+                v-model="color"
+                show-alpha
+                :predefine="predefineColors"
+              />
             </template>
           </el-input>
         </div>
@@ -125,6 +172,26 @@ const dropDown = (index: number) => {
         height: 30px;
         border-radius: 4px;
         background-color: #c4c4c4;
+        ::v-deep .el-input-group__prepend {
+          width: 20px;
+          padding: 0 10px;
+        }
+      }
+    }
+    .rightSide-heard-padding {
+      height: 60px;
+      margin-top: 10px;
+      .rightSide-heard-padding-title {
+        height: 30px;
+        display: flex;
+      }
+      .rightSide-heard-padding-main {
+        height: 30px;
+        width: 100%;
+        background-color: #c4c4c4;
+        ::v-deep .el-input-group__prepend {
+          padding: 0;
+        }
       }
     }
   }

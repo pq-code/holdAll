@@ -1,60 +1,30 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import pDropDownButtonVue from "@/components/p-dropDown/p-dropDownButton.vue";
 import { drawingBoardStore } from "../stores/drawingBoardStore";
+import { vclosePopUp } from "../utils/utils";
+import { sideButton } from "../component/staticData/sideButton";
 
 const store = drawingBoardStore();
 
+const list = ref(sideButton);
 const rectangle = ref(false);
 
-const buttonRefList = {}; // 正常
-const oldSelect = ref(); // 选中的项
+const oldSideSelect = ref(); // 选中的项
 
-const add = () => {};
+const add = (e: number) => {
+  oldSideSelect.value = e;
+  rectangle.value = !rectangle.value;
+};
 
 // 操作类型抛出
 const addRectangle = (e: string) => {
   rectangle.value = !rectangle.value;
   store.selectDraw = e;
 };
-
-const list = ref([
-  { title: "选择工具 A", fn: add, icon: "icon-yingyong" },
-  {
-    title: "矩形 R",
-    fn: () => (rectangle.value = !rectangle.value),
-    icon: "icon-yingyong",
-  },
-  { title: "画笔 P", fn: add, icon: "icon-yingyong" },
-  { title: "文本 T", fn: add, icon: "icon-yingyong" },
-  { title: "矩形", fn: add, icon: "icon-yingyong" },
-]);
-
-const rectangleList = ref([
-  { title: "矩形", fn: "rect", icon: "icon-yingyong" },
-  { title: "圆", fn: "circle", icon: "icon-yingyong" },
-  { title: "直线", fn: "11", icon: "icon-yingyong" },
-  { title: "多边形", fn: "1", icon: "icon-yingyong" },
-  { title: "图片", fn: "1", icon: "icon-yingyong" },
-]);
-
-const buttonRef = (el: any, key: string) => {
-  if (el) {
-    buttonRefList[key] = el;
-  }
-};
 </script>
 
 <template>
-  <div v-show="rectangle" class="openRectangle">
-    <pDropDownButtonVue
-      v-for="(item, index) in rectangleList"
-      :ref="(el) => buttonRef(el, `${index}_button`)"
-      :item="item"
-      :key="`${item}_${index}_button`"
-      @dropDown="addRectangle(item.fn)"
-    ></pDropDownButtonVue>
-  </div>
   <div class="leftSide">
     <div
       class="tool"
@@ -67,7 +37,7 @@ const buttonRef = (el: any, key: string) => {
         :content="item.title"
         placement="left-start"
       >
-        <div class="tool-rectangle" @click="item.fn">
+        <div class="tool-rectangle" @click="add(index)">
           <i :class="['iconfont', item.icon]"></i>
           <i
             style="
@@ -80,12 +50,23 @@ const buttonRef = (el: any, key: string) => {
           ></i>
         </div>
       </el-tooltip>
+      <div
+        v-show="index == oldSideSelect && item.options?.length > 0"
+        class="openRectangle"
+      >
+        <pDropDownButtonVue
+          v-for="(e, index) in item.options"
+          :item="e"
+          :key="`${e}_${index}_button`"
+          @dropDown="addRectangle(e.fn)"
+        ></pDropDownButtonVue>
+      </div>
     </div>
   </div>
 </template>
 <style lang="less" scoped>
 .leftSide {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   left: 10px;
   top: 60px;
@@ -115,22 +96,20 @@ const buttonRef = (el: any, key: string) => {
     .tool-rectangle:hover {
       background-color: rgb(220, 220, 220);
     }
-  }
-}
-
-.openRectangle {
-  position: absolute;
-  width: 180px;
-  height: 200px;
-  z-index: 110;
-  border-radius: 6px;
-  background-color: #ffffff;
-  transform: translateX(70px) translateY(130px);
-  box-shadow: 3px 4px 7px 0px rgb(146 146 146 / 50%);
-  .dropdownBox {
-    height: 40px;
-    ::v-deep .button {
-      height: 30px;
+    .openRectangle {
+      width: 180px;
+      height: 200px;
+      z-index: 110;
+      border-radius: 6px;
+      background-color: #ffffff;
+      transform: translateX(56px) translateY(-10px);
+      box-shadow: 3px 4px 7px 0px rgb(146 146 146 / 50%);
+      .dropdownBox {
+        height: 40px;
+        ::v-deep .button {
+          height: 30px;
+        }
+      }
     }
   }
 }

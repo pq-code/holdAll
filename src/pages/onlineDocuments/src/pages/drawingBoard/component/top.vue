@@ -6,6 +6,8 @@ import { ref } from "vue";
 </template>
 <style lang="less" scoped>
 .top {
+  position: absolute;
+  z-index: 100;
   top: 10px;
   left: 10px;
   position: absolute;

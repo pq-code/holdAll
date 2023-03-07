@@ -56,15 +56,6 @@ const lengthWidthFn = (e) => {
   return emits("lengthWidthFn", !props.lengthWidth);
 };
 
-// // 下拉按钮
-// const dropDown = (e:object | string ) => {
-//   if (e !== 'head' && props.lengthWidth && e.option && e.options.length > 1) {
-//     isFloat.value = !isFloat.value;
-//   } else {
-//     // isFloat.value = !isFloat.value;
-//   }
-// };
-
 // 收回下拉按钮
 const backDropDown = () => {
   if (!isFloat.value) {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-const percentage = ref(100);
+import { drawingBoardStore } from "../stores/drawingBoardStore";
+
+const store = drawingBoardStore();
 </script>
 <template>
   <div class="bottom">
@@ -13,7 +15,7 @@ const percentage = ref(100);
       </div>
     </div>
     <div class="bottom-right">
-      <div class="percentage">{{ `${percentage} %` }}</div>
+      <div class="percentage">{{ `${store.scale * 100} %` }}</div>
       <i
         style="width: 20px; cursor: pointer"
         class="iconfont icon-jiantouxiaxiao"
@@ -25,7 +27,7 @@ const percentage = ref(100);
 .bottom {
   display: flex;
   bottom: 10px;
-  right: 210px;
+  right: 10px;
   position: absolute;
   height: 40px;
   width: 160px;

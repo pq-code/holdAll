@@ -20,9 +20,17 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  offAreaClose: {
+    type: Boolean,
+    default() {
+      return true;
+    },
+  },
 });
 
 const routers = useRouter();
+
+const dropdownBox = ref();
 
 const foldOpen = ref(false);
 const selectedStatus = ref(false);
@@ -54,12 +62,14 @@ const routerFn = () => {
 const mouseleaveFn = () => {
   selectedStatus.value = false;
 };
+
 // 鼠标移入
 const mouseenterFn = () => {
   if (!select.value) {
     selectedStatus.value = true;
   }
 };
+
 // 取消选中
 const uncheck = () => {
   select.value = false;
@@ -71,7 +81,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="dropdownBox" @click="routerFn">
+  <div class="dropdownBox" @click="routerFn" ref="dropdownBox">
     <button
       class="button"
       :class="{ selectedStatus: selectedStatus, backColor: select }"

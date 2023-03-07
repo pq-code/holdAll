@@ -16,7 +16,7 @@ const centerCanvasRef = ref();
       <top></top>
       <centerCanvas ref="centerCanvasRef"></centerCanvas>
     </div>
-    <right></right>
+    <!-- <right></right> -->
     <bottom></bottom>
   </div>
 </template>
