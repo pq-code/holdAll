@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import pDropDownButtonVue from "@/components/p-dropDown/p-dropDownButton.vue";
-import { drawingBoardStore } from "../stores/drawingBoardStore";
-import { vclosePopUp } from "../utils/utils";
+// import { drawingBoardStore } from "../stores/drawingBoardStore";
+// import { vclosePopUp } from "../utils/utils";
 import { sideButton } from "../component/staticData/sideButton";
-
-const store = drawingBoardStore();
+import eventBus from "../eventBus";
 
 const list = ref(sideButton);
 
@@ -21,8 +20,13 @@ const add = (e: number) => {
 
 // 操作类型抛出
 const addRectangle = (e: string) => {
-  store.selectDraw = e;
   oldSideSelect.value = null;
+  console.log(e);
+  if (e == "pencil") {
+    eventBus.emit("paintingBrush", e);
+  } else {
+    eventBus.emit("addRectangle", e);
+  }
 };
 
 const clickoutside = () => {
@@ -46,6 +50,7 @@ const clickoutside = () => {
         <div class="tool-rectangle" @click.stop="add(index)">
           <i :class="['iconfont', item.icon]"></i>
           <i
+            v-if="item.options?.length > 0"
             style="
               position: absolute;
               left: 30px;
@@ -77,7 +82,7 @@ const clickoutside = () => {
   z-index: 100;
   left: 10px;
   top: 60px;
-  height: 600px;
+  //   height: 600px;
   width: 50px;
   background-color: #fff;
   border-radius: 6px;
@@ -105,7 +110,7 @@ const clickoutside = () => {
     }
     .openRectangle {
       width: 180px;
-      height: 200px;
+      //   height: 200px;
       z-index: 110;
       border-radius: 6px;
       background-color: #ffffff;

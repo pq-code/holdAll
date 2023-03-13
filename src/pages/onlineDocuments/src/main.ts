@@ -22,5 +22,7 @@ app.use(ElementPlus);
 app.use(VueKonva);
 
 app.directive("clickoutside", myDirective);
+// 事件总线
+const eventBus = (app.config.globalProperties.$eventBus = createApp({}));
 
 app.mount("#app");

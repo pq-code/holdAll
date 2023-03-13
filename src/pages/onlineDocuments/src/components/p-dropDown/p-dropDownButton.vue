@@ -81,19 +81,23 @@ defineExpose({
 </script>
 
 <template>
-  <div class="dropdownBox" @click="routerFn" ref="dropdownBox">
+  <div
+    class="dropdownBox"
+    @click.stop="routerFn"
+    ref="dropdownBox"
+    @mouseleave="mouseleaveFn"
+    @mouseenter="mouseenterFn"
+  >
     <button
       class="button"
       :class="{ selectedStatus: selectedStatus, backColor: select }"
-      @mouseleave="mouseleaveFn"
-      @mouseenter="mouseenterFn"
       :style="{ 'justify-content': lengthWidth ? 'flex-start' : 'center' }"
     >
       <i :class="['iconfont', item.icon]"></i>
       <div v-if="lengthWidth" style="margin-left: 10px">{{ item.title }}</div>
       <div
         class="button-dropDown"
-        @click="foldOpenFn"
+        @click.stop="foldOpenFn"
         v-if="item.options && item.options.length > 1 && lengthWidth"
       >
         <i class="iconfont icon-arrow-down"></i>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import pDropDownButtonVue from "@/components/p-dropDown/p-dropDownButton.vue";
 import { Search } from "@element-plus/icons-vue";
 import { drawingBoardStore } from "../stores/drawingBoardStore";
@@ -26,7 +26,35 @@ const predefineColors = ref([
   "hsla(209, 100%, 56%, 0.73)",
   "#c7158577",
 ]);
-const aaa = ref(); // 当前修改的图形数据
+const form = ref({
+  inputx: "",
+  inputy: "",
+  inputw: "",
+  inputh: "",
+  stroke: "",
+  fill: "",
+});
+
+watch(
+  () => store.selectedNode,
+  (n, o) => {
+    if (n) {
+      form.value.inputh = n.height();
+      form.value.inputw = n.width();
+      form.value.inputx = n.x();
+      form.value.inputy = n.y();
+      form.value.stroke = n.stroke();
+      form.value.fill = n.fill();
+    } else {
+      form.value.inputh = "";
+      form.value.inputw = "";
+      form.value.inputx = "";
+      form.value.inputy = "";
+      form.value.stroke = "";
+      form.value.fill = "";
+    }
+  }
+);
 
 // 动态ref
 const buttonRef = (el: any, key: string) => {
@@ -50,60 +78,60 @@ const dropDown = (index: number) => {
     <div class="rightSide-heard">
       <div class="rightSide-heard-actionBars">
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="form.inputx" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto>X</el-butto>
+              <el-button>X</el-button>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="form.inputy" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto>Y</el-butto>
+              <el-button>Y</el-button>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="form.inputw" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto>W</el-butto>
+              <el-button>W</el-button>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="form.inputh" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto>H</el-butto>
+              <el-button>H</el-button>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="search" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto
+              <el-button
                 ><i
                   class="iconfont icon-jiazai5"
                   style="
-                    transform: translateY(-11px) translateX(-8px);
+                    transform: translateY(-2px) translateX(-5px) rotate(-90deg);
                     position: absolute;
                   "
                 ></i
-              ></el-butto>
+              ></el-button>
             </template>
           </el-input>
         </div>
         <div class="rightSide-heard-actionBars-input">
-          <el-input v-model="input2" class="w-50 m-2" placeholder="">
+          <el-input v-model="search" class="w-50 m-2" placeholder="">
             <template #prepend>
-              <el-butto
+              <el-button
                 ><i
                   class="iconfont icon-jiazai5"
                   style="
-                    transform: translateY(-10px) translateX(-8px);
+                    transform: translateY(-2px) translateX(-10px);
                     position: absolute;
                   "
                 ></i
-              ></el-butto>
+              ></el-button>
             </template>
           </el-input>
         </div>
@@ -114,7 +142,21 @@ const dropDown = (index: number) => {
           <el-input v-model="color" class="w-50 m-2" placeholder="">
             <template #prepend>
               <el-color-picker
-                v-model="color"
+                v-model="form.fill"
+                show-alpha
+                :predefine="predefineColors"
+              />
+            </template>
+          </el-input>
+        </div>
+        <div class="rightSide-heard-padding-title" style="margin-top: 10px">
+          边框
+        </div>
+        <div class="rightSide-heard-padding-main">
+          <el-input v-model="color" class="w-50 m-2" placeholder="">
+            <template #prepend>
+              <el-color-picker
+                v-model="form.stroke"
                 show-alpha
                 :predefine="predefineColors"
               />

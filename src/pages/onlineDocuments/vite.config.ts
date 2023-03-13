@@ -26,6 +26,9 @@ export default defineConfig(({ command }) => {
         deleteOriginFile: command !== "serve", // 是否删除原始文件
       }),
     ],
+    server: {
+      host: "0.0.0.0", // ← 新增内容 ←
+    },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),

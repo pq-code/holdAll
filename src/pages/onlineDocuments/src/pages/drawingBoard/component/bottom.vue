@@ -27,6 +27,7 @@ const store = drawingBoardStore();
 .bottom {
   display: flex;
   bottom: 10px;
+  //   right: 10px;
   right: 10px;
   position: absolute;
   height: 40px;

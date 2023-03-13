@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import left from "./component/left.vue";
 import right from "./component/right.vue";
 import top from "./component/top.vue";
 import bottom from "./component/bottom.vue";
 import centerCanvas from "./component/centerCanvas.vue";
+import eventBus from "./eventBus";
 
 const centerCanvasRef = ref();
 </script>
@@ -16,8 +17,8 @@ const centerCanvasRef = ref();
       <top></top>
       <centerCanvas ref="centerCanvasRef"></centerCanvas>
     </div>
-    <!-- <right></right> -->
-    <bottom></bottom>
+    <right></right>
+    <!-- <bottom></bottom> -->
   </div>
 </template>
 <style lang="less" scoped>
@@ -26,7 +27,7 @@ const centerCanvasRef = ref();
   height: 100%;
   display: flex;
   flex-direction: row;
-  background-color: rgb(217, 217, 217);
+  background-color: hsl(0deg 0% 94%);
   .among {
     display: flex;
     flex-direction: column;
